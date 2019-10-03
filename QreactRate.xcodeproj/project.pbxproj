@@ -18,6 +18,7 @@
 		6D3830B32345C137007F86E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D3830B12345C137007F86E4 /* LaunchScreen.storyboard */; };
 		6D3830BE2345C137007F86E4 /* QreactRateExamplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3830BD2345C137007F86E4 /* QreactRateExamplesTests.swift */; };
 		6D3830C92345C137007F86E4 /* QreactRateExamplesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3830C82345C137007F86E4 /* QreactRateExamplesUITests.swift */; };
+		6D3830D52345C4B5007F86E4 /* QRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3830D42345C4B5007F86E4 /* QRate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		6D3830C42345C137007F86E4 /* QreactRateExamplesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QreactRateExamplesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D3830C82345C137007F86E4 /* QreactRateExamplesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QreactRateExamplesUITests.swift; sourceTree = "<group>"; };
 		6D3830CA2345C137007F86E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D3830D42345C4B5007F86E4 /* QRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			children = (
 				6D3830892345BE79007F86E4 /* QreactRate.h */,
 				6D38308A2345BE79007F86E4 /* Info.plist */,
+				6D3830D42345C4B5007F86E4 /* QRate.swift */,
 			);
 			path = QreactRate;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				TargetAttributes = {
 					6D3830852345BE79007F86E4 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					6D38308E2345BE79007F86E4 = {
 						CreatedOnToolsVersion = 11.0;
@@ -389,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3830D52345C4B5007F86E4 /* QRate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +586,7 @@
 		6D38309B2345BE79007F86E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7Q8XP7PWR4;
@@ -597,6 +603,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = qreact.net.QreactRate;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -605,6 +612,7 @@
 		6D38309C2345BE79007F86E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7Q8XP7PWR4;
@@ -629,6 +637,7 @@
 		6D38309E2345BE79007F86E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Q8XP7PWR4;
 				INFOPLIST_FILE = QreactRateTests/Info.plist;
@@ -647,6 +656,7 @@
 		6D38309F2345BE79007F86E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7Q8XP7PWR4;
 				INFOPLIST_FILE = QreactRateTests/Info.plist;
