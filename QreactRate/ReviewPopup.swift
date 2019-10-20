@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewPopup: UIView {
+public final class ReviewPopup: UIView {
     
     let viewModel = ReviewViewModel()
     
@@ -45,7 +45,7 @@ class ReviewPopup: UIView {
     let star1: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 1
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -55,7 +55,7 @@ class ReviewPopup: UIView {
     let star2: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 2
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -65,7 +65,7 @@ class ReviewPopup: UIView {
     let star3: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 3
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -75,7 +75,7 @@ class ReviewPopup: UIView {
     let star4: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 4
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -85,7 +85,7 @@ class ReviewPopup: UIView {
     let star5: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 5
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -209,9 +209,8 @@ class ReviewPopup: UIView {
     }
     
     @objc func starClick(sender: UIButton) {
-        print(sender.tag)
-        let star = UIImage(named: "star")
-        let star_filled = UIImage(named: "star_filled")
+        let star = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
+        let star_filled = UIImage(named: "star_filled", in: Bundle(for: ReviewPopup.self), with: nil)
         switch sender.tag {
         case 1:
             star1.setImage(star_filled, for: .normal)
@@ -246,13 +245,13 @@ class ReviewPopup: UIView {
         default:
             print("")
         }
-        viewModel.reviewStarClick(rate: sender.tag)
-        animateOut()
+        //viewModel.reviewStarClick(rate: sender.tag)
+        //animateOut()
     }
     
     @objc func notNowClick() {
         viewModel.notNowBtnClick()
-        animateOut()
+        //animateOut()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -262,21 +261,21 @@ class ReviewPopup: UIView {
 
 extension UIButton {
     
-    func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
+   public func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
         let border = CALayer()
         border.backgroundColor = borderColor.cgColor
         border.frame = CGRect(x: self.frame.size.width - borderWidth,y: 0, width:borderWidth, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    func addLeftBorder(color: UIColor, width: CGFloat) {
+    public func addLeftBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width:width, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    func addTopBorder(color: UIColor, width: CGFloat) {
+    public func addTopBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width: self.frame.size.width, height: width)
