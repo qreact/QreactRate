@@ -19,6 +19,7 @@
 		6D3830BE2345C137007F86E4 /* QreactRateExamplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3830BD2345C137007F86E4 /* QreactRateExamplesTests.swift */; };
 		6D3830C92345C137007F86E4 /* QreactRateExamplesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3830C82345C137007F86E4 /* QreactRateExamplesUITests.swift */; };
 		6D3830D52345C4B5007F86E4 /* QRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3830D42345C4B5007F86E4 /* QRate.swift */; };
+		6DAE40592397D78E0079FA44 /* ContollerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAE40582397D78E0079FA44 /* ContollerTest.swift */; };
 		6DCFA89F235AD1F2001714DF /* ReviewPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCFA89D235AD1F2001714DF /* ReviewPopup.swift */; };
 		6DCFA8A0235AD1F2001714DF /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCFA89E235AD1F2001714DF /* ReviewViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		6D3830C82345C137007F86E4 /* QreactRateExamplesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QreactRateExamplesUITests.swift; sourceTree = "<group>"; };
 		6D3830CA2345C137007F86E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D3830D42345C4B5007F86E4 /* QRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRate.swift; sourceTree = "<group>"; };
+		6DAE40582397D78E0079FA44 /* ContollerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContollerTest.swift; sourceTree = "<group>"; };
 		6DCFA89D235AD1F2001714DF /* ReviewPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPopup.swift; sourceTree = "<group>"; };
 		6DCFA89E235AD1F2001714DF /* ReviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +170,7 @@
 				6D3830B12345C137007F86E4 /* LaunchScreen.storyboard */,
 				6D3830B42345C137007F86E4 /* Info.plist */,
 				6D3830AE2345C137007F86E4 /* Preview Content */,
+				6DAE40582397D78E0079FA44 /* ContollerTest.swift */,
 			);
 			path = QreactRateExamples;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAE40592397D78E0079FA44 /* ContollerTest.swift in Sources */,
 				6D3830A72345C135007F86E4 /* AppDelegate.swift in Sources */,
 				6D3830A92345C135007F86E4 /* SceneDelegate.swift in Sources */,
 				6D3830AB2345C135007F86E4 /* ContentView.swift in Sources */,

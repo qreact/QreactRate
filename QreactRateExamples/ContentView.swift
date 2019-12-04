@@ -7,15 +7,21 @@
 //
 
 import SwiftUI
+import QreactRate
 
-struct ContentView: View {
-    var body: some View {
-        Text("Hello World")
+struct ContentView: UIViewRepresentable {
+    func makeUIView(context: UIViewRepresentableContext<ContentView>) -> UIView {
+        let rate = ReviewPopup()
+        return rate
+    }
+    
+    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<ContentView>) {
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some UIViewRepresentable {
         ContentView()
     }
 }

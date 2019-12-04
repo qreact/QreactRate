@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewViewModel {
+public final class ReviewViewModel {
     
     func notNowBtnClick() {
         UserDefaults.standard.set("notnow", forKey: "review")
@@ -25,7 +25,5 @@ class ReviewViewModel {
             guard let url = URL(string: "storeurl") else { return }
             UIApplication.shared.open(url)
         }
-        
     }
-    
 }

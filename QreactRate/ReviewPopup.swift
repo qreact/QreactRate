@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ReviewPopup: UIView {
+public final class ReviewPopup: UIView {
     
     let viewModel = ReviewViewModel()
     
-    fileprivate let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -20,11 +20,10 @@ class ReviewPopup: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-//        label.sizeToFit()
         return label
     }()
     
-    fileprivate let subTitle: UILabel = {
+     let subTitle: UILabel = {
         let label = UILabel()
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +33,7 @@ class ReviewPopup: UIView {
         return label
     }()
     
-    fileprivate let container : UIView = {
+     let container : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
@@ -42,7 +41,7 @@ class ReviewPopup: UIView {
         return view
     }()
     
-    let star1: UIButton = {
+     let star1: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let image = UIImage(named: "star")
@@ -62,7 +61,7 @@ class ReviewPopup: UIView {
         return button
     }()
     
-    let star3: UIButton = {
+     let star3: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let image = UIImage(named: "star")
@@ -92,7 +91,7 @@ class ReviewPopup: UIView {
         return button
     }()
     
-    let notNow: UIButton = {
+     let notNow: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Not Now", for: .normal)
@@ -103,7 +102,7 @@ class ReviewPopup: UIView {
         return button
     }()
     
-    @objc fileprivate func animateOut() {
+    @objc public func animateOut() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.container.transform = CGAffineTransform(translationX: 0, y: -self.frame.height)
             self.alpha = 0
@@ -114,7 +113,7 @@ class ReviewPopup: UIView {
         }
     }
     
-    @objc fileprivate func animateIn() {
+    @objc public func animateIn() {
         self.container.transform = CGAffineTransform(translationX: 0, y: -self.frame.height)
         self.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
@@ -123,7 +122,7 @@ class ReviewPopup: UIView {
         })
     }
     
-    fileprivate lazy var starStack: UIStackView = {
+    public lazy var starStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [star1, star2, star3, star4, star5])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.spacing = 10
@@ -132,14 +131,14 @@ class ReviewPopup: UIView {
         return stack
     }()
     
-    fileprivate let lineView : UIView = {
+    public let lineView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
         return view
     }()
     
-    fileprivate lazy var stackButton: UIStackView = {
+     lazy var stackButton: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [lineView, notNow])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -148,7 +147,7 @@ class ReviewPopup: UIView {
         return stack
     }()
     
-    fileprivate lazy var stack: UIStackView = {
+     lazy var stack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [titleLabel, subTitle, starStack, stackButton])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -250,7 +249,7 @@ class ReviewPopup: UIView {
         animateOut()
     }
     
-    @objc func notNowClick() {
+    @objc public func notNowClick() {
         viewModel.notNowBtnClick()
         animateOut()
     }
@@ -261,22 +260,21 @@ class ReviewPopup: UIView {
 }
 
 extension UIButton {
-    
-    func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
+   public func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
         let border = CALayer()
         border.backgroundColor = borderColor.cgColor
         border.frame = CGRect(x: self.frame.size.width - borderWidth,y: 0, width:borderWidth, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    func addLeftBorder(color: UIColor, width: CGFloat) {
+    public func addLeftBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width:width, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    func addTopBorder(color: UIColor, width: CGFloat) {
+    public func addTopBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width: self.frame.size.width, height: width)

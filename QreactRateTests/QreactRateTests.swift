@@ -11,11 +11,11 @@ import XCTest
 
 class QreactRateTests: XCTestCase {
 
-    var rate: QRate!
+    var rate: ReviewPopup!
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        rate = QRate()
+        rate = ReviewPopup()
     }
 
     override func tearDown() {
@@ -23,11 +23,11 @@ class QreactRateTests: XCTestCase {
     }
     
     func testAdd() {
-        XCTAssertEqual(rate.add(a: 1, b: 1), 2)
+        //XCTAssertEqual(rate.add(a: 1, b: 1), 2)
     }
     
     func testMultiply() {
-        XCTAssertEqual(rate.multiply(a: 1, b: 2), 2)
+        //XCTAssertEqual(rate.multiply(a: 1, b: 2), 2)
     }
 
     func testExample() {
