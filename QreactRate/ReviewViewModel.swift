@@ -10,11 +10,11 @@ import UIKit
 
 public final class ReviewViewModel {
     
-   public func notNowBtnClick() {
+    func notNowBtnClick() {
         UserDefaults.standard.set("notnow", forKey: "review")
     }
     
-    public func reviewStarClick(rate: Int) {
+     func reviewStarClick(rate: Int) {
         UserDefaults.standard.set(rate, forKey: "lastRate")
         UserDefaults.standard.set(1, forKey: "appOpenedCount")
         if rate <= 3 {
@@ -34,10 +34,4 @@ public final class ReviewViewModel {
             }
         }
     }
-<<<<<<< HEAD
-=======
-    
-    
-    
->>>>>>> fa58f1f748944abfecc67c95050f9613ee65e53d
 }

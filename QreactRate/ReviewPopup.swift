@@ -259,10 +259,6 @@ public final class ReviewPopup: UIView {
 }
 
 extension UIButton {
-<<<<<<< HEAD
-=======
-    
->>>>>>> fa58f1f748944abfecc67c95050f9613ee65e53d
    public func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
         let border = CALayer()
         border.backgroundColor = borderColor.cgColor
