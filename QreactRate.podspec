@@ -108,7 +108,7 @@ QReact is an easy-to-use Survey Software for Customers, Employees and Research. 
 
   # spec.resource  = "icon.png"
   # spec.resources = "Resources/*.png"
-
+    spec.resources = "QreactRate/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
 

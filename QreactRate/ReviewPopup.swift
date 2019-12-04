@@ -44,7 +44,7 @@ public final class ReviewPopup: UIView {
      let star1: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 1
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -54,7 +54,7 @@ public final class ReviewPopup: UIView {
     let star2: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 2
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -64,7 +64,7 @@ public final class ReviewPopup: UIView {
      let star3: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 3
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -74,7 +74,7 @@ public final class ReviewPopup: UIView {
     let star4: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 4
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -84,7 +84,7 @@ public final class ReviewPopup: UIView {
     let star5: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star")
+        let image = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
         button.setImage(image, for: .normal)
         button.tag = 5
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -208,9 +208,8 @@ public final class ReviewPopup: UIView {
     }
     
     @objc func starClick(sender: UIButton) {
-        print(sender.tag)
-        let star = UIImage(named: "star")
-        let star_filled = UIImage(named: "star_filled")
+        let star = UIImage(named: "star", in: Bundle(for: ReviewPopup.self), with: nil)
+        let star_filled = UIImage(named: "star_filled", in: Bundle(for: ReviewPopup.self), with: nil)
         switch sender.tag {
         case 1:
             star1.setImage(star_filled, for: .normal)
@@ -245,13 +244,13 @@ public final class ReviewPopup: UIView {
         default:
             print("")
         }
-        viewModel.reviewStarClick(rate: sender.tag)
-        animateOut()
+        //viewModel.reviewStarClick(rate: sender.tag)
+        //animateOut()
     }
     
     @objc public func notNowClick() {
         viewModel.notNowBtnClick()
-        animateOut()
+        //animateOut()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -260,6 +259,10 @@ public final class ReviewPopup: UIView {
 }
 
 extension UIButton {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> fa58f1f748944abfecc67c95050f9613ee65e53d
    public func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
         let border = CALayer()
         border.backgroundColor = borderColor.cgColor

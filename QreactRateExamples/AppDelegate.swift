@@ -10,10 +10,15 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+<<<<<<< HEAD
     var window: UIWindow?
 
+=======
+    
+>>>>>>> fa58f1f748944abfecc67c95050f9613ee65e53d
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 
