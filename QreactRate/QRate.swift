@@ -12,7 +12,6 @@ public final class QRate: UIView {
     
     let defaults = UserDefaults.standard
     
-    private var view: UIViewController?
     private var qreactToken = ""
     private var daysUntilPrompt = 0 /// minimum number of days
     private var launchesUntilPrompt = 0 /// minimum number of launches
@@ -310,27 +309,37 @@ public final class QRate: UIView {
 }
 
 extension QRate {
-   public func setQreactToken(token: String?) {
+    public func setQreactToken(token: String?) {
        guard let qtoken = token else { return }
        qreactToken = qtoken
     }
     
-   public func setTitle(title: String?) {
+    public func setDaysUntilPrompt(daysPrompt: Int?) {
+       guard let dprompt = daysPrompt else { return }
+       daysUntilPrompt = dprompt
+    }
+    
+    public func setLaunchesUntilPrompt(launchesPrompt: Int?) {
+       guard let lprompt = launchesPrompt else { return }
+       launchesUntilPrompt = lprompt
+    }
+    
+    public func setTitle(title: String?) {
         guard let ntitle = title else { return }
         titleLabel.text = ntitle
     }
     
-   public func setRateTitle(rateTitle: String?) {
+    public func setRateTitle(rateTitle: String?) {
         guard let title = rateTitle else { return }
         rateBtn.setTitle(title, for: .normal)
     }
     
-   public func setCancelTitle(cancelTitle: String?) {
+    public func setCancelTitle(cancelTitle: String?) {
         guard let title = cancelTitle else { return }
         cancelBtn.setTitle(title, for: .normal)
     }
     
-   public func setNeverTitle(neverTitle: String?) {
+    public func setNeverTitle(neverTitle: String?) {
         guard let title = neverTitle else { return }
         neverBtn.setTitle(title, for: .normal)
     }
