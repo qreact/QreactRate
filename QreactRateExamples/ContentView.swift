@@ -11,7 +11,7 @@ import QreactRate
 
 struct ContentView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<ContentView>) -> UIView {
-        let rate = ReviewPopup()
+        let rate = QRate()
         return rate
     }
     

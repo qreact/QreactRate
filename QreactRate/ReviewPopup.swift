@@ -8,10 +8,19 @@
 
 import UIKit
 
-public final class ReviewPopup: UIView {
+public final class QRate: UIView {
     
     let viewModel = ReviewViewModel()
+    let defaults = UserDefaults.standard
     
+    private var view: UIViewController?
+    private var qreactToken = ""
+    private var daysUntilPrompt = 0 /// minimum number of days
+    private var launchesUntilPrompt = 0 /// minimum number of launches
+    private var targetLevel = 0
+    private var ratedIndex = 0
+    private var neverShow = false
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -91,18 +100,61 @@ public final class ReviewPopup: UIView {
         return button
     }()
     
-     let notNow: UIButton = {
+    let dividerRate: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
+        return view
+    }()
+    
+     let dividerCancel: UIView = {
+           let view = UIView()
+           view.translatesAutoresizingMaskIntoConstraints = false
+           view.backgroundColor = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
+           return view
+    }()
+    
+    let dividerNotNow : UIView = {
+          let view = UIView()
+          view.translatesAutoresizingMaskIntoConstraints = false
+          view.backgroundColor = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
+          return view
+    }()
+    
+    let rateBtn: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Not Now", for: .normal)
+        button.setTitle("Rate", for: .normal)
         let color = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
         button.setTitleColor(color, for: .normal)
-        button.addTarget(self, action: #selector(notNowClick), for: .touchUpInside)
+        button.addTarget(self, action: #selector(rateApp), for: .touchUpInside)
         button.addTopBorder(color: UIColor.blue, width: 3)
         return button
     }()
     
-    @objc public func animateOut() {
+    let cancelBtn: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Cancel", for: .normal)
+        let color = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
+        button.setTitleColor(color, for: .normal)
+        button.addTarget(self, action: #selector(cancelDialog), for: .touchUpInside)
+        button.addTopBorder(color: UIColor.blue, width: 3)
+        return button
+    }()
+    
+     let neverBtn: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Never", for: .normal)
+        let color = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
+        button.setTitleColor(color, for: .normal)
+        button.addTarget(self, action: #selector(neverClick), for: .touchUpInside)
+        button.addTopBorder(color: UIColor.blue, width: 3)
+        return button
+    }()
+    
+    @objc func animateOut() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.container.transform = CGAffineTransform(translationX: 0, y: -self.frame.height)
             self.alpha = 0
@@ -113,7 +165,7 @@ public final class ReviewPopup: UIView {
         }
     }
     
-    @objc public func animateIn() {
+    @objc func animateIn() {
         self.container.transform = CGAffineTransform(translationX: 0, y: -self.frame.height)
         self.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
@@ -122,7 +174,7 @@ public final class ReviewPopup: UIView {
         })
     }
     
-    public lazy var starStack: UIStackView = {
+     lazy var starStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [star1, star2, star3, star4, star5])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.spacing = 10
@@ -131,15 +183,8 @@ public final class ReviewPopup: UIView {
         return stack
     }()
     
-    public let lineView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.init(red: 6/255, green: 86/255, blue: 254/255, alpha: 1)
-        return view
-    }()
-    
      lazy var stackButton: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [lineView, notNow])
+        let stack = UIStackView(arrangedSubviews: [dividerRate, rateBtn, dividerCancel, cancelBtn, dividerNotNow, neverBtn])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.alignment = .fill
@@ -159,7 +204,6 @@ public final class ReviewPopup: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateOut)))
         self.backgroundColor = UIColor.gray.withAlphaComponent(0.6)
         self.frame = UIScreen.main.bounds
         
@@ -167,7 +211,7 @@ public final class ReviewPopup: UIView {
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        container.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
         container.addSubview(stack)
         stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 20).isActive = true
@@ -196,13 +240,29 @@ public final class ReviewPopup: UIView {
         titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -15).isActive = true
         
-        notNow.widthAnchor.constraint(equalTo: container.widthAnchor, constant: 0).isActive = true
-        notNow.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        notNow.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
+        rateBtn.widthAnchor.constraint(equalTo: container.widthAnchor, constant: 0).isActive = true
+        rateBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        rateBtn.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
         
-        lineView.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
-        lineView.widthAnchor.constraint(equalTo: notNow.widthAnchor).isActive = true
-        lineView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        cancelBtn.widthAnchor.constraint(equalTo: container.widthAnchor, constant: 0).isActive = true
+        cancelBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        cancelBtn.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
+        
+        neverBtn.widthAnchor.constraint(equalTo: container.widthAnchor, constant: 0).isActive = true
+        neverBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        neverBtn.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
+        
+        dividerRate.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        dividerRate.widthAnchor.constraint(equalTo: rateBtn.widthAnchor).isActive = true
+        dividerRate.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        
+        dividerCancel.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        dividerCancel.widthAnchor.constraint(equalTo: cancelBtn.widthAnchor).isActive = true
+        dividerCancel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        
+        dividerNotNow.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        dividerNotNow.widthAnchor.constraint(equalTo: neverBtn.widthAnchor).isActive = true
+        dividerNotNow.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         
         animateIn()
     }
@@ -244,13 +304,7 @@ public final class ReviewPopup: UIView {
         default:
             print("")
         }
-        //viewModel.reviewStarClick(rate: sender.tag)
-        //animateOut()
-    }
-    
-    @objc public func notNowClick() {
-        viewModel.notNowBtnClick()
-        //animateOut()
+        ratedIndex = sender.tag
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -258,22 +312,82 @@ public final class ReviewPopup: UIView {
     }
 }
 
+extension ReviewPopup {
+    public func prepare() {
+        let currentTime = Int(NSDate().timeIntervalSince1970 * 1000)
+        
+        /// increment launch counter
+        let launchCt = defaults.integer(forKey: "qreactLaunchCt") + 1
+        defaults.set(launchCt, forKey: "qreactLaunchCt")
+        
+        /// get first date launch
+        let dateFirstLaunch = defaults.integer(forKey: "qreactDateFirst")
+        if dateFirstLaunch == 0 {
+            defaults.set(currentTime, forKey: "qreactDateFirst")
+        }
+    }
+    
+    public func show(controller: UIViewController) {
+        let launchCt = defaults.integer(forKey: "qreactLaunchCt")
+        let dateFirstLaunch = defaults.integer(forKey: "qreactDateFirst")
+        let currentTime = Int(NSDate().timeIntervalSince1970 * 1000)
+        
+        if defaults.bool(forKey: "qreactNeverAgain") {
+            neverShow = true
+            return
+        }
+        
+        if launchCt >= launchesUntilPrompt && !neverShow {
+            if currentTime >= (dateFirstLaunch + (daysUntilPrompt*24*60*60*1000)) {
+                controller.view.addSubview(self)
+            }
+        }
+    }
+    
+    @objc func rateApp() {
+        if ratedIndex <= targetLevel {
+              guard let url = URL(string: "Reviewqreact") else { return }
+              if #available(iOS 10.0, *) {
+                  UIApplication.shared.open(url)
+              } else {
+                  // Fallback on earlier versions
+              }
+        } else {
+              guard let url = URL(string: "storeurl") else { return }
+              if #available(iOS 10.0, *) {
+                  UIApplication.shared.open(url)
+              } else {
+                  // Fallback on earlier versions
+              }
+        }
+    }
+       
+    @objc func neverClick() {
+       defaults.set(false, forKey: "qreactNeverAgain")
+       animateOut()
+    }
+       
+    @objc func cancelDialog() {
+       self.removeFromSuperview()
+    }
+}
+
 extension UIButton {
-   public func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
+    func addRightBorder(borderColor: UIColor, borderWidth: CGFloat) {
         let border = CALayer()
         border.backgroundColor = borderColor.cgColor
         border.frame = CGRect(x: self.frame.size.width - borderWidth,y: 0, width:borderWidth, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    public func addLeftBorder(color: UIColor, width: CGFloat) {
+    func addLeftBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width:width, height:self.frame.size.height)
         self.layer.addSublayer(border)
     }
     
-    public func addTopBorder(color: UIColor, width: CGFloat) {
+    func addTopBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0, width: self.frame.size.width, height: width)
