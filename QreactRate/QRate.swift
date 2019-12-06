@@ -51,7 +51,7 @@ public final class QRate: UIView {
      let star1: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star", in: Bundle(for: QRate.self), with: nil)
+        let image = UIImage(named: "star", in: Bundle(for: QRate.self), compatibleWith: nil)
         button.setImage(image, for: .normal)
         button.tag = 1
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -61,7 +61,7 @@ public final class QRate: UIView {
     let star2: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star", in: Bundle(for: QRate.self), with: nil)
+        let image = UIImage(named: "star", in: Bundle(for: QRate.self), compatibleWith: nil)
         button.setImage(image, for: .normal)
         button.tag = 2
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -71,7 +71,7 @@ public final class QRate: UIView {
      let star3: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star", in: Bundle(for: QRate.self), with: nil)
+        let image = UIImage(named: "star", in: Bundle(for: QRate.self), compatibleWith: nil)
         button.setImage(image, for: .normal)
         button.tag = 3
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -81,7 +81,7 @@ public final class QRate: UIView {
     let star4: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star", in: Bundle(for: QRate.self), with: nil)
+        let image = UIImage(named: "star", in: Bundle(for: QRate.self), compatibleWith: nil)
         button.setImage(image, for: .normal)
         button.tag = 4
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -91,7 +91,7 @@ public final class QRate: UIView {
     let star5: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "star", in: Bundle(for: QRate.self), with: nil)
+        let image = UIImage(named: "star", in: Bundle(for: QRate.self), compatibleWith: nil)
         button.setImage(image, for: .normal)
         button.tag = 5
         button.addTarget(self, action: #selector(starClick), for: .touchUpInside)
@@ -264,8 +264,8 @@ public final class QRate: UIView {
     }
     
     @objc func starClick(sender: UIButton) {
-        let star = UIImage(named: "star", in: Bundle(for: QRate.self), with: nil)
-        let star_filled = UIImage(named: "star_filled", in: Bundle(for: QRate.self), with: nil)
+        let star = UIImage(named: "star", in: Bundle(for: QRate.self), compatibleWith: nil)
+        let star_filled = UIImage(named: "star_filled", in: Bundle(for: QRate.self), compatibleWith: nil)
         switch sender.tag {
         case 1:
             star1.setImage(star_filled, for: .normal)
