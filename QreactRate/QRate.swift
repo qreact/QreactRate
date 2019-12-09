@@ -324,6 +324,11 @@ extension QRate {
        launchesUntilPrompt = lprompt
     }
     
+    public func setTargetLevel(targetLevel: Int?) {
+       guard let ltarget = targetLevel else { return }
+       launchesUntilPrompt = ltarget
+    }
+    
     public func setTitle(title: String?) {
         guard let ntitle = title else { return }
         titleLabel.text = ntitle
@@ -382,7 +387,7 @@ extension QRate {
 
     @objc func rateApp() {
         if ratedIndex <= targetLevel {
-              guard let url = URL(string: qreactToken) else { return }
+              guard let url = URL(string: "https://www.qreact.net/public/form?token=\(qreactToken)") else { return }
               if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
               } else {
