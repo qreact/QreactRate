@@ -21,7 +21,9 @@ pod try QreactRate
 Including the rate only in one view controller is enough.
 ```swift
 let rate = QRate()
-rate.show(view: self.view)
+if let view = self.navigationController?.view {
+    rate.show(view: view)
+}
 ```
 
 Default conditions of dialog as below:
