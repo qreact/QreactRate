@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "QreactRate"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "QReact is an easy-to-use Survey Software for Customers, Employees and Research"
 
   # This description is used to generate tags and improve search results.
