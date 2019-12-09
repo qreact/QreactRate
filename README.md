@@ -27,7 +27,7 @@ rate.show(view: self.view)
 Default conditions of dialog as below:
 1. App is launched more than n days later than installation. Default value is zero. Change via setDaysUntilPrompt().
 2. App is launched more than n times. Default value is zero. Change via setLaunchesUntilPrompt().
-3. App redirects to qreact if rate value smaller than and equal to target level value. Otherwise app redirects user to play store. Default value is zero. Change via setTargetLevel().
+3. App redirects to qreact if rate value smaller than and equal to target level value. Otherwise app redirects user to app store. Default value is zero. Change via setTargetLevel().
 4. You should get token from [the website](https://www.qreact.net) to get qreact work. Then set via setToken().
 
 ### Step 4. Customize dialog
