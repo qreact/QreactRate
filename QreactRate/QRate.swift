@@ -32,11 +32,12 @@ public final class QRate: UIView {
     
      let subTitle: UILabel = {
         let label = UILabel()
-        label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.text = "Subtitle of popup"
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.text = "message"
+        label.textColor = UIColor(red:0.38, green:0.43, blue:0.49, alpha:1.0)
+        label.numberOfLines = 2
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -209,7 +210,7 @@ public final class QRate: UIView {
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        container.heightAnchor.constraint(equalToConstant: 280).isActive = true
         
         container.addSubview(stack)
         stack.topAnchor.constraint(equalTo: container.topAnchor, constant: 20).isActive = true
@@ -238,6 +239,9 @@ public final class QRate: UIView {
         titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -15).isActive = true
         
+        subTitle.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15).isActive = true
+        subTitle.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -15).isActive = true
+        
         rateBtn.widthAnchor.constraint(equalTo: container.widthAnchor, constant: 0).isActive = true
         rateBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         rateBtn.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
@@ -250,15 +254,15 @@ public final class QRate: UIView {
         neverBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         neverBtn.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
         
-        dividerRate.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        dividerRate.heightAnchor.constraint(equalToConstant: 0.8).isActive = true
         dividerRate.widthAnchor.constraint(equalTo: rateBtn.widthAnchor).isActive = true
         dividerRate.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         
-        dividerCancel.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        dividerCancel.heightAnchor.constraint(equalToConstant: 0.8).isActive = true
         dividerCancel.widthAnchor.constraint(equalTo: cancelBtn.widthAnchor).isActive = true
         dividerCancel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         
-        dividerNotNow.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        dividerNotNow.heightAnchor.constraint(equalToConstant: 0.8).isActive = true
         dividerNotNow.widthAnchor.constraint(equalTo: neverBtn.widthAnchor).isActive = true
         dividerNotNow.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
     }
@@ -324,14 +328,19 @@ extension QRate {
        launchesUntilPrompt = lprompt
     }
     
-    public func setTargetLevel(targetLevel: Int?) {
-       guard let ltarget = targetLevel else { return }
-       launchesUntilPrompt = ltarget
+    public func setTargetLevel(tLevel: Int?) {
+       guard let ltarget = tLevel else { return }
+       targetLevel = ltarget
     }
     
     public func setTitle(title: String?) {
         guard let ntitle = title else { return }
         titleLabel.text = ntitle
+    }
+    
+    public func setSubTitle(sTitle: String?) {
+        guard let nsubtitle = sTitle else { return }
+        subTitle.text = nsubtitle
     }
     
     public func setRateTitle(rateTitle: String?) {
@@ -394,7 +403,7 @@ extension QRate {
                   UIApplication.shared.openURL(url)
               }
         } else {
-              let storeToken = "https://itunes.apple.com/app/\(Bundle.main.bundleIdentifier ?? "")"
+              let storeToken = "itms://itunes.apple.com/app/\(Bundle.main.bundleIdentifier ?? "")"
               guard let url = URL(string: storeToken) else { return }
               if #available(iOS 10.0, *) {
                   UIApplication.shared.open(url, options: [:], completionHandler: nil)
