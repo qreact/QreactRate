@@ -4,24 +4,24 @@ QReact is an easy-to-use Survey Software for Customers, Employees and Research. 
 # Usage
 
 ### Step 1. Add QreactRate to your pod file
-```pod
+```ruby
 target 'MyApp' do
   pod 'QreactRate'
 end
 ```
 
-Then run a ```pod pod install``` inside your terminal, or from CocoaPods.app.
+Then run a ```ruby pod install``` inside your terminal, or from CocoaPods.app.
 Alternatively to give it a test run, run the command:
 
-```pod
+```ruby
 pod try QreactRate
 ```
 
 ### Step 3. Add Qreact rate to your view controller
 Including the rate only in one view controller is enough.
 ```swift
-      let rate = QRate()
-      rate.show(view: self.view)
+let rate = QRate()
+rate.show(view: self.view)
 ```
 
 Default conditions of dialog as below:
@@ -34,12 +34,12 @@ Default conditions of dialog as below:
 You can set your description and customize cancel, rate and never buttons.
 
 ```swift
-  rate.setTitle(title: "My title")
-  rate.setCancelTitle(cancelTitle: "Custom cancel")
-  rate.setNeverTitle(neverTitle: "Custom never")
-  rate.setQreactToken(token: "url token")
-  rate.setDaysUntilPrompt(daysPrompt: 1)
-  rate.setLaunchesUntilPrompt(launchesPrompt: 1)
+rate.setTitle(title: "My title")
+rate.setCancelTitle(cancelTitle: "Custom cancel")
+rate.setNeverTitle(neverTitle: "Custom never")
+rate.setQreactToken(token: "url token")
+rate.setDaysUntilPrompt(daysPrompt: 1)
+rate.setLaunchesUntilPrompt(launchesPrompt: 1)
 ```
 
 # Licence
