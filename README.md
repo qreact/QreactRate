@@ -10,7 +10,7 @@ target 'MyApp' do
 end
 ```
 
-Then run a ```ruby pod install``` inside your terminal, or from CocoaPods.app.
+Then run a ```pod install``` inside your terminal, or from CocoaPods.app.
 Alternatively to give it a test run, run the command:
 
 ```ruby
